@@ -14,15 +14,44 @@
 <div id="qrcodeTable"><canvas width="256" height="256"></canvas></div> -->
 <p>Render in canvas</p> 
 <div id="qrcodeCanvas"><canvas width="256" height="256"></canvas></div>
+
+<div id="output"></div>
+<p id ="base64Data"></p>
 <script>
 	//jQuery('#qrcode').qrcode("this plugin is great");
 	// jQuery('#qrcodeTable').qrcode({
 	// 	render	: "table",
 	// 	text	: "http://jetienne.com"
 	// });	
-	$('#qrcodeCanvas').qrcode({
-		text	: "http://jetienne.com"
+	
+	// var dataURL = $('#qrcodeCanvas').qrcode({
+	// 	text	: "http://hassankassim-001-site1.1tempurl.com"
+	// }).toDataURL("image/png");
+	// console.log("dataURL",dataURL);
+
+	jQuery(function(){
+
+		$('#qrcodeCanvas').qrcode({
+		text	: "http://hassankassim-001-site1.1tempurl.com"
 	});	
+		var cvs = $('#qrcodeCanvas canvas');
+		console.log("cvs",cvs);
+		console.log("cvs0",cvs[0].toDataURL("image/png"));
+		console.log("cvs1",cvs[1].toDataURL("image/png"));
+		console.log("cvsj",cvs[1].toDataURL("image/jpg"));
+
+    $('#output').qrcode("http://hassankassim-001-site1.1tempurl.com");
+
+    var canvas = $('#output canvas');
+    console.log(canvas);
+    var img = canvas.get(0).toDataURL("image/png");
+    document.getElementById('base64Data').innerHTML = img;
+    console.log("img",img );
+
+    //or
+    //var img = $(canvas)[0].toDataURL("image/png");
+    //document.write('<img src="'+img+'"/>');
+});
 </script>
 
 
